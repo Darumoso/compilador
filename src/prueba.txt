@@ -1,0 +1,9 @@
+* = + / - > >= < <= %
+as variable1
+56e-4 -45
+'C' 'a'
+func if else if let false else true false while
+"Literal" "Lit45%3sd"
+[ ] ( ) { } ; : ,
+->
+&
