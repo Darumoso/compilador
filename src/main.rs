@@ -1,44 +1,89 @@
 use logos::Logos;
 use std::env;
 use std::fs;
+use std::io::Write;
+use std::fs::File;
 
 mod tokens;
-use tokens::Token;
-use tokens::LexingError;
+use tokens::{Token, LexingError};
 
 
+fn main() -> std::io::Result<()> {
 
-fn main(){
-let file = fs::read_to_string(env::args().nth(1).expect("Expected file argument"))
+    let file = fs::read_to_string(env::args().nth(1).expect("Expected file argument"))
         .expect("Failed to read file");
 
     let mut lex = Token::lexer(file.as_str()); //Esta tiene que ser mut
+    let mut token_cont = 0;
 
-    /*
-    for result in Token::lexer(file.as_str()) {
-        match result {
-            Ok(token) => print!("{:?}", token),
-            Err(e) => panic!("some error occurred: {:?}", e),
-        }
-        lex.next();
-        println!("\n------> {}", lex.slice());
-    }*/
+    let mut write_file = File::create("Tokens.txt")?;
 
     while let Some(token) = lex.next() {
         match token{
-            Ok(Token::Keyword((line, column))) => println!("Keyword '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Ok(Token::Identifier((line, column))) => println!("Identifier '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Ok(Token::Operator((line, column))) => println!("Operator '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Ok(Token::ConstantNumeric((line, column))) => println!("ConstantNumeric '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Ok(Token::ConstantChar((line, column))) => println!("ConstantChar '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Ok(Token::StringLiteral((line, column))) => println!("StringLiteral '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Ok(Token::Punctuation((line, column))) => println!("Punctuation '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Ok(Token::SpecialChar((line, column))) => println!("SpecialChar '{}' found at ({}, {})", lex.slice(), line+1, column+1),
-            Err(LexingError::UnexpectedToken) => panic!("Error! unexpected token: {}", lex.slice()),
-            _ => println!("No funca"),
+            Ok(Token::Keyword((line, column))) => 
+                writeln!(write_file, "Keyword '{}' found at ({}, {})\n"
+                            ,lex.slice(), line+1, column+1)?,
+
+            Ok(Token::Identifier((line, column))) => 
+                writeln!(write_file, "Identifier '{}' found at ({}, {})\n"
+                            ,lex.slice(), line+1, column+1)?,
+
+            Ok(Token::Operator((line, column))) => 
+                writeln!(write_file, "Operator '{}' found at ({}, {})\n",
+                            lex.slice(), line+1, column+1)?,
+
+            Ok(Token::ConstantNumeric((line, column))) => 
+                writeln!(write_file, "ConstantNumeric '{}' found at ({}, {})\n",
+                            lex.slice(), line+1, column+1)?,
+
+            Ok(Token::ConstantChar((line, column))) => 
+                writeln!(write_file, "ConstantChar '{}' found at ({}, {})\n",
+                            lex.slice(), line+1, column+1)?,
+
+            Ok(Token::StringLiteral((line, column))) =>  
+                writeln!(write_file, "StringLiteral '{}' found at ({}, {})\n",
+                            lex.slice(), line+1, column+1)?,
+
+            Ok(Token::Punctuation((line, column))) => 
+                writeln!(write_file, "Punctuation '{}' found at ({}, {})\n",
+                            lex.slice(), line+1, column+1)?,
+
+            Ok(Token::SpecialChar((line, column))) => 
+                writeln!(write_file, "SpecialChar '{}' found at ({}, {})\n",
+                            lex.slice(), line+1, column+1)?,
+
+            Err(LexingError::UnexpectedToken) => { 
+                let (line, col) = find_line_and_column(file.as_str(), lex.span());
+                panic!("Error! found unexpected token: '{}' at ({line}, {col})", lex.slice());
+                },
+            _ => panic!("Unknown error!"),
 
         }
+        token_cont+=1;
     }
+
+    println!("\nLexing process succeded! :D \nTotal tokens found: {token_cont}");
+    Ok(())
 }
+
+fn find_line_and_column(file: &str, span: logos::Span) -> (usize, usize) {
+    let mut line = 1;
+    let mut col = 1;
+
+    for (i, c) in file.chars().enumerate() {
+        if i >= span.start {
+            break;
+        }
+        if c == '\n' {
+            line += 1;
+            col = 1;
+        } else {
+            col += 1;
+        }
+    }
+
+    (line, col)
+}
+
 
 
