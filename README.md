@@ -1,5 +1,5 @@
 # PDM
-## Tipos de datos
+## Data types
 Los tipos de datos que contiene el lenguaje son: enteros, flotantes, booleanos, char y strings
 - Enteros(int)
 - Flotantes(float)
@@ -17,8 +17,7 @@ Cuenta con las siguientes sentencias de control de flujo:
 - else
 - else if
 
-Así mismo, tambien cuenta con los siguientes loops: 
-- For
+It only supports the next loop statement: 
 - While
 
 ## Funciones
@@ -59,34 +58,34 @@ During this lexing phase only the next error is handled:
 
 ```
 func main () {
-    let hola = 45; 
-    let HolaMundo = "Hola mundo"; 
+    let number = 45; 
+    let HelloWorld = "Hello World!"; 
 
 
 //Operaciones
-    let numero1 = 35;
-    let numero2 = 33.4;
-    let numero3 = 1_000_000;
+    let number1 = 35;
+    let number2 = 33.4;
+    let number3 = 1_000_000;
 
-    let suma = numero1 + numero3;
-    let resta = numero3 - numero1;
-    let division = numero3 / numero1;
-    let multiplicacion = numero1 * numero3;
-    let modulo = numero1 % numero3;
+    let suma = number1 + number3;
+    let resta = number3 - number1;
+    let division = number3 / number1;
+    let multiplicacion = number1 * number3;
+    let modulo = number1 % number3;
 
     if (resta > 0){
-        printf("El número es positivo");
+        printf("The number is positive");
     }
     else if (resta < 0){
-        printf("El número es negativo");
+        printf("The number is negative");
     }
     else {
-        printf("El número es 0");
+        printf("The number is 0");
     }
 }
 
-    func printf(string: hola) {
-        //Aquí se debería imprimir algo
+    func printf(example: String) {
+        //Code...
     }
 
 ```

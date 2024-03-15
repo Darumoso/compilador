@@ -23,7 +23,7 @@ pub enum Token {
     #[regex(r"\'[a-zA-Z]\'", priority = 10, callback = word_callback)]
     ConstantChar((usize, usize)),
 
-    #[regex(r"(func|if|let|else (if)?|false|true|while|int|float|bool|char|string)", priority = 15, callback = word_callback)]
+    #[regex(r"(func|if|let|else (if)?|false|true|while|int|float|bool|char|String|return)", priority = 15, callback = word_callback)]
     Keyword((usize, usize)),
 
     #[regex("\"(?s:[^\"\\\\]|\\\\.)*\"", priority = 10, callback = word_callback)]
