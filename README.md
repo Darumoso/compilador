@@ -1,13 +1,11 @@
-# 
-
-
+# PDM
 ## Tipos de datos
 Los tipos de datos que contiene el lenguaje son: enteros, flotantes, booleanos, char y strings
-    - Enteros (int)
-    - Flotantes (float)
-    - booleanos (bool)
-    - Caracteres (char)
-    - Strings (string) 
+- Enteros(int)
+- Flotantes(float)
+- Booleanos(bool)
+- Caracteres(char)
+- Strings(string) 
 
 A pesar de ser fuertemente tipado, se usa la palabra "let" para definir cualquiera de estos
 tipos de datos, puesto que el lenguaje infiere de cual se trata. Excepto en el caso de
@@ -15,17 +13,17 @@ string y char, si se quiere usar un caracter, se debe hacer uso explícitamente 
 
 ## Sentencias de control
 Cuenta con las siguientes sentencias de control de flujo:
-    - if
-    - else
-    - else if
+- if
+- else
+- else if
 
 Así mismo, tambien cuenta con los siguientes loops: 
-    - For
-    - While
+- For
+- While
 
 ## Funciones
 La palabra reservada para las funciones es: 
-    - func
+- func
 A menos que se específique un tipo de dato, todas las variables retornan void, para
 especificar un retorno distinto, hace hace uso de: 
 ```
@@ -34,11 +32,11 @@ func ejemplo() -> int {}
 
 ## Operaciones
 Puede realizar las operaciones aritméticas más comunes, como lo son: 
-    - Suma (+)
-    - Resta (-)
-    - Multiplicación (*)
-    - División (/)
-    - Módulo (%)
+- Suma (+)
+- Resta (-)
+- Multiplicación (*)
+- División (/)
+- Módulo (%)
 
 ## Comentarios
 Al igual que en otros lenguajes, los comentarios en una linea se hacen con // y
@@ -46,20 +44,18 @@ en multilinea se hace uso de /* */
 
 ## Fase del lexer
 El lexer considera 6 tipos de tokens generales: 
-    - Identifiers
-    - Operators
-    - Constants
-    - Keyword
-    - Literals
-    - Punctuations
-    - Special chars
+- Identifiers
+- Operators
+- Constants
+- Keyword
+- Literals
+- Punctuations
+- Special chars
 
-Durante esta fase se consideran los siguientes errores: 
-    - Exceeding length of numeric constants
-    - Illegal characters
-    - Unmatched string
+During this lexing phase only the next error is handled: 
+- Unexpected token
 
-# Ejemplo de código
+# Code example
 
 ```
 func main () {
