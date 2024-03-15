@@ -1,15 +1,13 @@
 func main () {
-	//Malditos inutiles, este comentario no se tokeniza
     let hola = 45; 
     let HolaMundo = "Hola mundo"; 
 
     let numero1 = 35;
     let numero2 = 33.4;
     let numero3 = 1_000_000;
-	let numero4 =  4e4
-
-	let letra = 'c';
-
+    let numero4 =  4e4
+    let letra = 'c';
+	$
     let suma = numero1 + numero3;
     let resta = numero3 - numero1;
     let division = numero3 / numero1;
