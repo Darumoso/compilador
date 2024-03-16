@@ -7,7 +7,7 @@ func main () {
     let numero3 = 1_000_000;
     let numero4 =  4e4
     let letra = 'c';
-	$
+    $
     let suma = numero1 + numero3;
     let resta = numero3 - numero1;
     let division = numero3 / numero1;

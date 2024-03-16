@@ -1,4 +1,31 @@
 # PDM
+## Intallation
+
+### Dependencies
+In case rust isn't installed, it can be installed with:
+
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+
+### Building 
+First clone the repo: 
+
+`git clone https://github.com/Darumoso/compilador`
+`cd compilador`
+
+Then build with:
+`cargo build --release`
+
+### Runing the lexer
+Once the project is succesfully builded, a binary can be found at:
+`cd target/release`
+Then make it executable
+`chmod +x ./compilador`
+To run it, enter: 
+`./compilador (file)
+
+An output file will be generated in the directory where the command was
+executed.
+
 ## Data types
 Los tipos de datos que contiene el lenguaje son: enteros, flotantes, booleanos, char y strings
 - Enteros(int)
@@ -38,11 +65,10 @@ Puede realizar las operaciones aritméticas más comunes, como lo son:
 - Módulo (%)
 
 ## Comentarios
-Al igual que en otros lenguajes, los comentarios en una linea se hacen con // y
-en multilinea se hace uso de /* */
+Al igual que en otros lenguajes, los comentarios en una linea se hacen con //
 
 ## Fase del lexer
-El lexer considera 6 tipos de tokens generales: 
+El lexer considera 7 tipos de tokens generales: 
 - Identifiers
 - Operators
 - Constants
@@ -62,7 +88,7 @@ func main () {
     let HelloWorld = "Hello World!"; 
 
 
-//Operaciones
+    //Operaciones
     let number1 = 35;
     let number2 = 33.4;
     let number3 = 1_000_000;
@@ -90,3 +116,7 @@ func main () {
 
 ```
 
+## Testing
+Inside the main directory two important files can be found, "archivo.pdm" and
+"archivoFalla.pdm", this are the two example file, the first one is expected to have a
+succesful tokenization process, while the second one is expected to fail.
