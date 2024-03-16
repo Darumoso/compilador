@@ -4,24 +4,35 @@
 ### Dependencies
 In case rust isn't installed, it can be installed with:
 
-`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
 ### Building 
 First clone the repo: 
 
-`git clone https://github.com/Darumoso/compilador`
-`cd compilador`
+```
+git clone https://github.com/Darumoso/compilador && cd compilador
+```
 
 Then build with:
-`cargo build --release`
+```
+cargo build --release
+```
 
 ### Runing the lexer
 Once the project is succesfully builded, a binary can be found at:
-`cd target/release`
+```
+cd target/release
+```
 Then make it executable
-`chmod +x ./compilador`
+```
+chmod +x ./compilador
+```
 To run it, enter: 
-`./compilador (file)
+```
+./compilador (file
+)``
 
 An output file will be generated in the directory where the command was
 executed.
