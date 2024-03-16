@@ -22,17 +22,19 @@ cargo build --release
 
 ### Runing the lexer
 Once the project is succesfully builded, a binary can be found at:
+
 ```
 cd target/release
 ```
+
 Then make it executable
 ```
 chmod +x ./compilador
 ```
 To run it, enter: 
 ```
-./compilador (file
-)``
+./compilador (file)
+```
 
 An output file will be generated in the directory where the command was
 executed.
