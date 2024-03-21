@@ -1,14 +1,15 @@
 use logos::{Logos, Lexer, Skip};
 
+
 #[derive(Debug, Logos)]
 #[logos(extras = (usize, usize))]
 #[logos(error = LexingError)]
-#[logos(skip r"[\t\f ]*")] // Ignore this regex pattern between tokens
+#[logos(skip r"[\t\f ]*")]
 pub enum Token {
     #[regex(r"\n", priority = 10, callback = newline_callback)]
     Newline,
 
-    #[regex(r"//[^\n]*", priority = 10, callback = newline_callback)]
+    #[regex(r"//[^\n]*", priority = 10, callback = empty_callback)]
     Commentary,
 
     #[regex(r"[a-zA-Z][0-9a-zA-Z]*", priority = 10, callback = word_callback)]
@@ -16,10 +17,10 @@ pub enum Token {
 
     #[regex(r"([\*=\+/\-><%]|(>=)|(<=))", priority = 10, callback = word_callback)]
     Operator((usize, usize)),
-    
+
     #[regex(r"(?:0|\-?[1-9][_?0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?", word_callback)]
     ConstantNumeric((usize, usize)),
-    
+
     #[regex(r"\'[a-zA-Z]\'", priority = 10, callback = word_callback)]
     ConstantChar((usize, usize)),
 
@@ -55,3 +56,6 @@ fn word_callback(lex: &mut Lexer<Token>) -> (usize, usize) {
     (line, column)
 }
 
+fn empty_callback(_lex: &mut Lexer<Token>) -> Skip {
+    Skip
+}

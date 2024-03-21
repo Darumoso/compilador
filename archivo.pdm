@@ -1,6 +1,7 @@
 func main () {
-    let hola = 45; 
-    let HolaMundo = "Hola mundo"; 
+    //Comentario que no se tokeniza
+    let hola = 45;
+    let HolaMundo = "Hola mundo";
 
     let numero1 = 35;
     let numero2 = 33.4;
@@ -24,7 +25,6 @@ func main () {
         printf("El número es 0");
     }
 }
-    func printf(string: hola) {
+    func printf(String: hola) {
         //Aquí se debería imprimir algo
     }
-

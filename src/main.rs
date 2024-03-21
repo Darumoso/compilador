@@ -20,43 +20,43 @@ fn main() -> std::io::Result<()> {
 
     while let Some(token) = lex.next() {
         match token{
-            Ok(Token::Keyword((line, column))) => 
+            Ok(Token::Keyword((line, column))) =>
                 writeln!(write_file, "Keyword '{}' found at ({}, {})\n"
                             ,lex.slice(), line+1, column+1)?,
 
-            Ok(Token::Identifier((line, column))) => 
+            Ok(Token::Identifier((line, column))) =>
                 writeln!(write_file, "Identifier '{}' found at ({}, {})\n"
                             ,lex.slice(), line+1, column+1)?,
 
-            Ok(Token::Operator((line, column))) => 
+            Ok(Token::Operator((line, column))) =>
                 writeln!(write_file, "Operator '{}' found at ({}, {})\n",
                             lex.slice(), line+1, column+1)?,
 
-            Ok(Token::ConstantNumeric((line, column))) => 
+            Ok(Token::ConstantNumeric((line, column))) =>
                 writeln!(write_file, "ConstantNumeric '{}' found at ({}, {})\n",
                             lex.slice(), line+1, column+1)?,
 
-            Ok(Token::ConstantChar((line, column))) => 
+            Ok(Token::ConstantChar((line, column))) =>
                 writeln!(write_file, "ConstantChar '{}' found at ({}, {})\n",
                             lex.slice(), line+1, column+1)?,
 
-            Ok(Token::StringLiteral((line, column))) =>  
+            Ok(Token::StringLiteral((line, column))) =>
                 writeln!(write_file, "StringLiteral '{}' found at ({}, {})\n",
                             lex.slice(), line+1, column+1)?,
 
-            Ok(Token::Punctuation((line, column))) => 
+            Ok(Token::Punctuation((line, column))) =>
                 writeln!(write_file, "Punctuation '{}' found at ({}, {})\n",
                             lex.slice(), line+1, column+1)?,
 
-            Ok(Token::SpecialChar((line, column))) => 
+            Ok(Token::SpecialChar((line, column))) =>
                 writeln!(write_file, "SpecialChar '{}' found at ({}, {})\n",
                             lex.slice(), line+1, column+1)?,
 
-            Err(LexingError::UnexpectedToken) => { 
+            Err(LexingError::UnexpectedToken) => {
                 let (line, col) = find_line_and_column(file.as_str(), lex.span());
                 panic!("Error! found unexpected token: '{}' at ({line}, {col})", lex.slice());
                 },
-            _ => panic!("Unknown error!"),
+            _ => panic!("Unknown error! {:#?}", lex.slice()),
 
         }
         token_cont+=1;
