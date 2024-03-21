@@ -13,7 +13,7 @@ fn main() -> std::io::Result<()> {
     let file = fs::read_to_string(env::args().nth(1).expect("Expected file argument"))
         .expect("Failed to read file");
 
-    let mut lex = Token::lexer(file.as_str()); //Esta tiene que ser mut
+    let mut lex = Token::lexer(file.as_str());
     let mut token_cont = 0;
 
     let mut write_file = File::create("Tokens.txt")?;
